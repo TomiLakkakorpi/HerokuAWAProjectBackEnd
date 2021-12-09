@@ -147,7 +147,7 @@ router.post("/newUser", (req, res) => {
         res.send({ message });
       }
     } else {
-      res.send({ message: "sucessfull", user: user });
+      res.send({ message: "sucessful", user: user });
     }
   });
 });
@@ -169,7 +169,7 @@ router.post("/newAdmin", (req, res, next) => {
     .save()
     .then((result) => {
       res.status(201).json({
-        message: "User Added successfully!",
+        message: "User Added Successfully!",
         userCreated: {
           _id: result._id,
         },
@@ -190,11 +190,11 @@ router.post("/login", (req, res) => {
   // console.log(email, password);
   User.findOne({ email: email }, (err, user) => {
     if (!user) {
-      res.send({ message: "Sorry You are not a user" });
+      res.send({ message: "Sorry You are not a registered user" });
     } else {
       bcrypt.compare(password, user.password).then(function (result) {
         if (result) {
-          res.send({ message: "Login Succes", user: user });
+          res.send({ message: "Login Success", user: user });
         } else {
           res.send({ message: "Wrong Credentials" });
         }
@@ -215,11 +215,11 @@ router.post("/orders", (req, res) => {
   order.save((err) => {
     if (err) {
       if (err.code === 11000) {
-        const message = "Error Occured";
+        const message = "An Error Occured";
         res.send({ message });
       }
     } else {
-      res.send({ message: "sucessfull" });
+      res.send({ message: "Successful" });
     }
   });
 });
@@ -246,11 +246,11 @@ router.get("/findAndDelete/:id", (req, res) => {
   Order.findOneAndDelete({ id }, (err) => {
     if (err) {
       if (err.code === 11000) {
-        const message = "Error Occured";
+        const message = "An Error Occured";
         res.send({ message });
       }
     } else {
-      res.send({ message: "Sucessfull" });
+      res.send({ message: "Successful" });
     }
   });
 
